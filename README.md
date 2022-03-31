@@ -1,4 +1,2 @@
-# ABCS_cda2022
-# ABCS_cda2022
-# ABCS_cda2022
-# ABCS_cda2022
+# ABCS_Study
+# Code for 1 social threat "pain tolerance" task and 2 fearlessness about death tasks
