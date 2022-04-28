@@ -12,7 +12,11 @@
   <script>
 
     /* initialize jsPsych */
-    var jsPsych = initJsPsych();
+    var jsPsych = initJsPsych({
+  on_finish: function() {
+    jsPsych.data.displayData();
+  }
+});
 
     /* create timeline */
     var timeline = [];
@@ -88,7 +92,7 @@ var test = {
  data: {
     task: 'response'},
     on_finish: function(data){
-    data.response;GooG
+    data.response;
   }
 };
     var test_procedure = {
