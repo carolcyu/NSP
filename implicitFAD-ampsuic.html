@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ABCS Study: Implicit FAD</title>
+    <title>Welcome (I-FAD)</title>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
@@ -20,14 +20,14 @@
     /* preload images */
     var preload = {
       type: jsPsychPreload,
-      images: ['img/key.png','sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'socialthreat/2579.jpg', 'sdvp/SDVPS_6.jpg']
+      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg']
     };
     timeline.push(preload);
 
     /* define welcome message trial */
     var welcome = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: "Welcome to the Implicit FAD Task. Press any key to begin."
+      stimulus: " <p>Welcome to the Modified Affect-Misattribution Task! </p> <p>In this task, you will be asked to rate HOW PLEASANT a SYMBOL is as quickly as you can.  </p> <p>Press any key for instructions. </p>"
     };
     timeline.push(welcome);
 
@@ -35,15 +35,10 @@
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-        <p>In this task, an image will appear on the screen.</p><p>If the image is <strong>very unpleasant</strong>, 
+        <p>In this task, an image will appear on the screen followed by a symbol.</p><p>If the symbol is <strong>LESS pleasant</strong> than the average symbol, 
         press the number 1 on the keyboard as fast as you can.</p>
-        <p>If the image is <strong>unpleasant</strong>, press the number 2 
+        <p>If the image is <strong>MORE pleasant</strong> than the average symbol, press the number 9 
         on the keyboard as fast as you can.</p></p>
-        <p>If the image is <strong>pleasant</strong>, press the number 8 
-        on the keyboard as fast as you can.</p></p>
-        <p>If the image is <strong>very pleasant</strong>, press the number 9 on the keyboard as fast as you can.</p>
-       <p> <img src='img/key.png' width = '900' height='250' alt='Key'></div>
-        </p>
         <p>Press any key to begin.</p>
       `,
       post_trial_gap: 2000
@@ -61,31 +56,56 @@
         {stimulus:'sdvp/SDVPS_5.jpg'},
         {stimulus:'sdvp/SDVPS_6.jpg'},
     ];
+    var test_stimuli1 = [
+        {stimulus: 'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus:'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/NS_T4.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/NS_T7.jpg'},
+   ];
     var fixation = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: '<div style="font-size:60px;">+</div>',
   choices: "NO_KEYS",
   trial_duration: 1000,
+  post_trial_gap: 125,
   data: {
     task: 'fixation'
   }
 };
 var test = {
   type: jsPsychImageKeyboardResponse,
-  stimulus: jsPsych.timelineVariable('stimulus'),
-  choices: ['1', '2', '8', '9'],
- prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>",
+  stimulus: test_stimuli1,
+  choices: "NO_KEYS",
+ trial_duration: 75,
+ };
+ var symbol = {
+  type: jsPsychImageKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('symbol'),
+  choices: "NO_KEYS",
+  trial_duration: 100,
+  data: {
+    task: 'symbol'
+  }
+};
+var response = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<p>How would you rate that symbol? </p>",
+  choices: ['1', '9'],
+ prompt: "<p>Press '1' for LESS pleasant than the average symbol OR '9' for MORE pleasant than the average symbol. </p>",
  data: {
     task: 'response'},
     on_finish: function(data){
-    data.response;GooG
-  }
+    data.response;
+ }
 };
     var test_procedure = {
-      timeline: [fixation,test],
+      timeline: [fixation,test,symbol,response],
       timeline_variables: test_stimuli,
-      repetitions: 2,
-      randomize_order: true
+      repetitions: 1,
+      randomize_order: true,
+      post_trial_gap: 500,
     };
     timeline.push(test_procedure);
     
