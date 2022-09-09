@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ABCS Study: Social Threat</title>
+    <title>Welcome</title>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
@@ -12,7 +12,11 @@
   <script>
 
     /* initialize jsPsych */
-    var jsPsych = initJsPsych();
+    var jsPsych = initJsPsych({
+  on_finish: function() {
+    jsPsych.data.displayData();
+  }
+});
 
     /* create timeline */
     var timeline = [];
@@ -20,14 +24,14 @@
     /* preload images */
     var preload = {
       type: jsPsychPreload,
-      images: ['img/key.png','socialthreat/1019.jpg', 'socialthreat/1033.jpg', 'socialthreat/1051.jpg', 'socialthreat/1090.jpg', 'socialthreat/1110.jpg', 'socialthreat/1111.jpg', 'socialthreat/1113.jpg', 'socialthreat/2579.jpg', 'socialthreat/2900.jpg', 'socialthreat/5711.jpg', 'socialthreat/5720.jpg', 'socialthreat/7001.jpg', 'socialthreat/7004.jpg', 'socialthreat/7080.jpg', 'socialthreat/7090.jpg', 'socialthreat/9041.jpg']
+      images: ['img/key.png','socialthreat/NS_NT1.jpg', 'socialthreat/NS_NT2.jpg', 'socialthreat/NS_NT3.jpg', 'socialthreat/NS_NT4.jpg', 'socialthreat/NS_NT5.jpg', 'socialthreat/NS_NT6.jpg', 'socialthreat/NS_NT7.jpg', 'socialthreat/NS_T1.jpg', 'socialthreat/NS_T2.jpg', 'socialthreat/NS_T3.jpg', 'socialthreat/NS_T4.jpg', 'socialthreat/NS_T5.jpg', 'socialthreat/NS_T6.jpg', 'socialthreat/NS_T7.jpg', 'socialthreat/S_NT1.jpg', 'socialthreat/S_NT2_.jpg','socialthreat/S_NT3_.jpg','socialthreat/S_NT4_.jpg','socialthreat/S_NT5_.jpg','socialthreat/S_NT6_.jpg', 'socialthreat/S_NT7_.jpg', 'socialthreat/S_T1.jpg', 'socialthreat/S_T2.jpg','socialthreat/S_T3_.jpg','socialthreat/S_T4_.jpg', 'socialthreat/S_T5_.jpg', 'socialthreat/S_T6_.jpg', 'socialthreat/S_T7_.jpg']
     };
     timeline.push(preload);
 
     /* define welcome message trial */
     var welcome = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: "Welcome to the Social Threat Task. Press any key to begin."
+      stimulus: " <p>Welcome to the Image Rating Task! </p> <p>In this task, you will be asked to rate the HOW PLEASANT an image is as quickly as you can.  </p> <p>Press any key for instructions. </p>"
     };
     timeline.push(welcome);
 
@@ -35,7 +39,7 @@
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-        <p>In this task, an image will appear on the screen.</p><p>If the image is <strong>very unpleasant</strong>, 
+        <p>In this task, an image will appear on the screen.</p><p>If the image is <strong>very unpleasant</strong>,   
         press the number 1 on the keyboard as fast as you can.</p>
         <p>If the image is <strong>unpleasant</strong>, press the number 2 
         on the keyboard as fast as you can.</p></p>
@@ -50,135 +54,273 @@
     };
     timeline.push(instructions);
 
-    /* define test trials */
-    var SNT_trial1 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/2579.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
+    /* define test trial stimuli array, 7 blocks */
+    var test_stimuli1 = [
+        {stimulus: 'socialthreat/NS_T4.jpg'},
+        {stimulus: 'socialthreat/NS_T7.jpg'},
+        {stimulus:'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/S_NT6_.jpg'},
+        {stimulus: 'socialthreat/S_T1.jpg'},
+        {stimulus: 'socialthreat/S_T6_.jpg'},
+        {stimulus: 'socialthreat/NS_NT2.jpg'},
+        {stimulus: 'socialthreat/S_T5_.jpg'},
+        {stimulus: 'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/NS_T3.jpg'},
+        {stimulus: 'socialthreat/NS_NT3.jpg'},
+        {stimulus: 'socialthreat/NS_NT4.jpg'},
+        {stimulus: 'socialthreat/S_NT2_.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus: 'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/S_T2.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/NS_T1.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/S_T3_.jpg'},
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_NT6.jpg'},
+        {stimulus: 'socialthreat/S_NT7_.jpg'},
+        {stimulus: 'socialthreat/NS_NT5.jpg'},
+        {stimulus: 'socialthreat/S_T4_.jpg'},
+        {stimulus: 'socialthreat/NS_NT7.jpg'},
+        {stimulus: 'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/S_T7_.jpg'}
+
+    ];
+    var test_stimuli2 = [
+        {stimulus: 'socialthreat/S_NT2_.jpg'},
+        {stimulus: 'socialthreat/NS_NT2.jpg'},
+        {stimulus:'socialthreat/NS_T7.jpg'},
+        {stimulus: 'socialthreat/NS_NT4.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/S_T5_.jpg'},
+        {stimulus: 'socialthreat/S_T3_.jpg'},
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/S_T1.jpg'},
+        {stimulus: 'socialthreat/NS_T1.jpg'},
+        {stimulus: 'socialthreat/S_T2.jpg'},
+        {stimulus: 'socialthreat/NS_NT3.jpg'},
+        {stimulus: 'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/S_T6_.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/NS_T3.jpg'},
+        {stimulus: 'socialthreat/S_NT7_.jpg'},
+        {stimulus: 'socialthreat/NS_NT7.jpg'},
+        {stimulus: 'socialthreat/S_T4_.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus: 'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/NS_T4.jpg'},
+        {stimulus: 'socialthreat/NS_NT5.jpg'},
+        {stimulus: 'socialthreat/S_T7_.jpg'},
+        {stimulus: 'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/NS_NT6.jpg'},
+        {stimulus: 'socialthreat/S_NT6_.jpg'}
+
+    ];
+    var test_stimuli3 = [
+        {stimulus: 'socialthreat/S_T6_.jpg'},
+        {stimulus: 'socialthreat/NS_NT7.jpg'},
+        {stimulus:'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/S_T1.jpg'},
+        {stimulus: 'socialthreat/NS_NT6.jpg'},
+        {stimulus: 'socialthreat/S_T7_.jpg'},
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_NT4.jpg'},
+        {stimulus: 'socialthreat/S_NT6_.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_T3.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus: 'socialthreat/S_NT7_.jpg'},
+        {stimulus: 'socialthreat/S_T5_.jpg'},
+        {stimulus: 'socialthreat/NS_T1.jpg'},       
+        {stimulus: 'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/S_T4_.jpg'},
+        {stimulus: 'socialthreat/NS_NT3.jpg'},
+        {stimulus: 'socialthreat/S_NT2_.jpg'},
+        {stimulus: 'socialthreat/S_T3_.jpg'},
+        {stimulus: 'socialthreat/NS_NT5.jpg'},
+        {stimulus: 'socialthreat/NS_NT2.jpg'},
+        {stimulus: 'socialthreat/S_T2.jpg'},
+        {stimulus: 'socialthreat/NS_T7.jpg'},
+        {stimulus: 'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/NS_T4.jpg'}
+
+    ];
+    var test_stimuli4 = [
+        {stimulus: 'socialthreat/NS_NT3.jpg'},
+        {stimulus: 'socialthreat/S_NT6_.jpg'},
+        {stimulus:'socialthreat/S_T7_.jpg'},
+        {stimulus: 'socialthreat/S_T5_.jpg'},
+        {stimulus: 'socialthreat/S_NT7_.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus: 'socialthreat/NS_NT7.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/S_T4_.jpg'},
+        {stimulus: 'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/NS_T1.jpg'},
+        {stimulus: 'socialthreat/NS_NT5.jpg'},
+        {stimulus: 'socialthreat/NS_NT6.jpg'},
+        {stimulus: 'socialthreat/S_T3_.jpg'},
+        {stimulus: 'socialthreat/S_T2.jpg'},
+        {stimulus: 'socialthreat/NS_T3.jpg'},
+        {stimulus: 'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/S_T6_.jpg'},
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_NT2.jpg'},
+        {stimulus: 'socialthreat/S_T1.jpg'},
+        {stimulus: 'socialthreat/S_NT2_.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_T4.jpg'},
+        {stimulus: 'socialthreat/NS_NT4.jpg'},
+        {stimulus: 'socialthreat/NS_T7.jpg'}
+
+    ];
+    var test_stimuli5 = [
+        {stimulus: 'socialthreat/NS_T3.jpg'},
+        {stimulus: 'socialthreat/S_T1.jpg'},
+        {stimulus:'socialthreat/S_T5_.jpg'},
+        {stimulus: 'socialthreat/NS_NT7.jpg'},
+        {stimulus: 'socialthreat/NS_NT3.jpg'},
+        {stimulus: 'socialthreat/S_T2.jpg'},
+        {stimulus: 'socialthreat/NS_T4.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/NS_NT2.jpg'},
+        {stimulus: 'socialthreat/S_T4_.jpg'},
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_NT6.jpg'},
+        {stimulus: 'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/NS_NT5.jpg'},
+        {stimulus: 'socialthreat/S_T7_.jpg'},
+        {stimulus: 'socialthreat/S_NT6_.jpg'},
+        {stimulus: 'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/S_NT7_.jpg'},
+        {stimulus: 'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/S_T3_.jpg'},
+        {stimulus: 'socialthreat/NS_T7.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus: 'socialthreat/NS_NT4.jpg'},
+        {stimulus: 'socialthreat/NS_T1.jpg'},
+        {stimulus: 'socialthreat/S_T6_.jpg'},
+        {stimulus: 'socialthreat/S_NT2_.jpg'}
+
+    ];
+    var test_stimuli6 = [
+        {stimulus: 'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/S_T2.jpg'},
+        {stimulus:'socialthreat/S_NT6_.jpg'},
+        {stimulus: 'socialthreat/NS_NT6.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus: 'socialthreat/S_T7_.jpg'},
+        {stimulus: 'socialthreat/NS_T7.jpg'},
+        {stimulus: 'socialthreat/S_T4_.jpg'},
+        {stimulus: 'socialthreat/NS_T1.jpg'},
+        {stimulus: 'socialthreat/NS_NT7.jpg'},
+        {stimulus: 'socialthreat/S_T6_.jpg'},
+        {stimulus: 'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/NS_T3.jpg'},
+        {stimulus: 'socialthreat/S_NT7_.jpg'},
+        {stimulus: 'socialthreat/NS_NT5.jpg'},
+        {stimulus: 'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/S_NT2_.jpg'},
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/S_T5_.jpg'},
+        {stimulus: 'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/NS_NT2.jpg'},
+        {stimulus: 'socialthreat/S_T1.jpg'},
+        {stimulus: 'socialthreat/NS_NT3.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/NS_NT4.jpg'},
+        {stimulus: 'socialthreat/S_T3_.jpg'},
+        {stimulus: 'socialthreat/NS_T4.jpg'}
+
+    ];
+    var test_stimuli7 = [
+        {stimulus: 'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus:'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/NS_T4.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/NS_T7.jpg'},
+        {stimulus: 'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/S_T5_.jpg'},
+        {stimulus: 'socialthreat/NS_NT4.jpg'},
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/S_NT7_.jpg'},
+        {stimulus: 'socialthreat/S_T7_.jpg'},
+        {stimulus: 'socialthreat/S_T4_.jpg'},
+        {stimulus: 'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/S_T6_.jpg'},
+        {stimulus: 'socialthreat/NS_T1.jpg'},
+        {stimulus: 'socialthreat/S_T1.jpg'},
+        {stimulus: 'socialthreat/NS_T3.jpg'},
+        {stimulus: 'socialthreat/S_T2.jpg'},
+        {stimulus: 'socialthreat/NS_NT7.jpg'},
+        {stimulus: 'socialthreat/S_NT6_.jpg'},
+        {stimulus: 'socialthreat/S_T3_.jpg'},
+        {stimulus: 'socialthreat/NS_NT6.jpg'},
+        {stimulus: 'socialthreat/NS_NT3.jpg'},
+        {stimulus: 'socialthreat/S_NT2_.jpg'},
+        {stimulus: 'socialthreat/NS_NT5.jpg'},
+        {stimulus: 'socialthreat/NS_NT2.jpg'}
+
+    ];
+    var fixation = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: '<div style="font-size:60px;">+</div>',
+  choices: "NO_KEYS",
+  trial_duration: 1000,
+  data: {
+    task: 'fixation'
+  }
+};
+var test = {
+  type: jsPsychImageKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('stimulus'),
+  choices: "NO_KEYS",
+ prompt: "<p>Study this image. </p>",
+ trial_duration: 1000,
+ };
+var response = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<p>How pleasant was that image? </p>",
+  choices: ['1', '2', '8', '9'],
+ prompt: "<p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>",
+ data: {
+    task: 'response'},
+    on_finish: function(data){
+    data.response;
+ }
+};
+    var test_procedure = {
+      timeline: [fixation,test,response],
+      timeline_variables: test_stimuli1, test_stimuli2, test_stimuli3,test_stimuli4,test_stimuli5,test_stimuli6,test_stimuli7,
+      repetitions: 1,
+      randomize_order: true,
+      post_trial_gap: 500,
     };
-    var NSNT_trial1 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/7175.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-    var NSNT_trial2 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/5711.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-    var NSNT_trial3 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/5720.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-    var NSNT_trial4 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/7001.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-    var NSNT_trial5 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/7004.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-    var NSNT_trial6 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/7080.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-    var NSNT_trial7 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/7090.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-    var ST_trial1 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/2900.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
+    timeline.push(test_procedure);
     
-    var ST_trial2 = {
-      type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/9041.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-
-    var NST_trial1 = {
-        type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/1019.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-    var NST_trial2 = {
-        type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/1033.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-
-    var NST_trial3 = {
-        type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/1051.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-
-    var NST_trial4 = {
-        type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/1090.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-
-    var NST_trial5 = {
-        type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/1110.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-
-    var NST_trial6 = {
-        type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/1111.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-
-    var NST_trial7 = {
-        type: jsPsychImageKeyboardResponse,
-      stimulus: 'socialthreat/1113.jpg',
-      choices: ['1', '2', '8', '9'],
-      prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>"
-    };
-
-    timeline.push(ST_trial1, ST_trial2, NST_trial1,NST_trial2,NST_trial3, NST_trial4, NST_trial5, NST_trial6, NST_trial7,SNT_trial1,NSNT_trial1,NSNT_trial2,NSNT_trial3,NSNT_trial4,NSNT_trial5,NSNT_trial6,NSNT_trial7);
-
-    /* define debrief */
 var debrief_block = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: function() {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: function() {
 
-        var trials = jsPsych.data.get().filter({task: 'response'});
-        var correct_trials = trials.filter({correct: true});
-        var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
-        var rt = Math.round(trials.select('rt').mean());
+    var trials = jsPsych.data.get().filter({task: 'response'});
+    var rt = Math.round(trials.select('rt').mean());
 
-        return `<p>Your average response time was ${rt}ms.</p>
-          <p>Press any key to complete the experiment. Thank you for your time!</p>`;
-      }
-    };
-    timeline.push(debrief_block);
+    return `<p>Your average response time was ${rt}ms.</p>
+      <p>Press any key to complete the task. We appreciate your time!</p>`;
 
+  }
+};
+timeline.push(debrief_block);
     /* start the experiment */
     jsPsych.run(timeline);
 
