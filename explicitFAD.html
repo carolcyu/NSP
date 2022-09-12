@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ABCS Study: Implicit FAD</title>
+    <title>Welcome (E-FAD)</title>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
@@ -17,17 +17,17 @@
     /* create timeline */
     var timeline = [];
 
-    /* preload images */
-    var preload = {
+ /* preload images */
+ var preload = {
       type: jsPsychPreload,
-      images: ['img/key.png','socialthreat/1019.jpg', 'socialthreat/1033.jpg', 'socialthreat/1051.jpg', 'socialthreat/1090.jpg', 'socialthreat/1110.jpg', 'socialthreat/1111.jpg', 'socialthreat/1113.jpg', 'socialthreat/2579.jpg', 'socialthreat/2900.jpg', 'socialthreat/5711.jpg', 'socialthreat/5720.jpg', 'socialthreat/7001.jpg', 'socialthreat/7004.jpg', 'socialthreat/7080.jpg', 'socialthreat/7090.jpg', 'socialthreat/9041.jpg']
+      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg']
     };
     timeline.push(preload);
 
     /* define welcome message trial */
     var welcome = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: "Welcome to the Social Threat Task. Press any key to begin."
+      stimulus: "Welcome to another Image Rating Task! </p> <p>In this task, you will be asked to rate the HOW PLEASANT an image is as quickly as you can. </p> <p>Press any key for instructions. </p>"
     };
     timeline.push(welcome);
 
@@ -42,8 +42,6 @@
         <p>If the image is <strong>pleasant</strong>, press the number 8 
         on the keyboard as fast as you can.</p></p>
         <p>If the image is <strong>very pleasant</strong>, press the number 9 on the keyboard as fast as you can.</p>
-       <p> <img src='img/key.png' width = '900' height='250' alt='Key'></div>
-        </p>
         <p>Press any key to begin.</p>
       `,
       post_trial_gap: 2000
@@ -78,13 +76,13 @@ var test = {
  data: {
     task: 'response'},
     on_finish: function(data){
-    data.response;GooG
+    data.response;
   }
 };
     var test_procedure = {
       timeline: [fixation,test],
       timeline_variables: test_stimuli,
-      repetitions: 2,
+      repetitions: 1,
       randomize_order: true
     };
     timeline.push(test_procedure);
