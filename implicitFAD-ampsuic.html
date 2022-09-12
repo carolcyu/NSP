@@ -12,7 +12,13 @@
   <script>
 
     /* initialize jsPsych */
-    var jsPsych = initJsPsych();
+    var jsPsych = initJsPsych({
+  on_finish: function() {
+    jsPsych.data.displayData('json');
+  }
+});
+var all_data = jsPsych.data.get();
+console.log(all_data.csv());
 
     /* create timeline */
     var timeline = [];
@@ -20,7 +26,7 @@
     /* preload images */
     var preload = {
       type: jsPsychPreload,
-      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg', 'symbols/symbol1.jpeg','symbols/symbol2.jpeg', 'symbols/symbol3.jpeg','symbols/symbol4.jpeg','symbols/symbol5.jpeg', 'symbols/symbol6.jpeg','symbols/symbol7.jpeg', 'symbols/symbol8.jpeg']
+      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg', 'sdvp/symbol1.jpg','sdvp/symbol2.jpg', 'sdvp/symbol3.jpg','sdvp/symbol4.jpg','sdvp/symbol5.jpg','sdvp/symbol6.jpg','sdvp/symbol7.jpg', 'sdvp/symbol8.jpg', 'sdvp/cs1.jpg','sdvp/symbol9.jpg','sdvp/cs2.jpg','sdvp/symbol10.jpg','sdvp/cs3.jpg','sdvp/symbol11.jpg', 'sdvp/cs4.jpg', 'sdvp/symbol12.jpg','sdvp/cs5.jpg', 'sdvp/symbol13.jpg','sdvp/cs6.jpg', 'sdvp/symbol14.jpg', 'sdvp/cs7.jpg', 'sdvp/symbol15.jpg','sdvp/cs8.jpg', 'sdvp/symbol16.jpg', 'sdvp/cs9.jpg', 'sdvp/symbol17.jpg','sdvp/cs10.jpg','sdvp/symbol18.jpg','sdvp/cs11.jpg', 'sdvp/symbol19.jpg','sdvp/cs12.jpg', 'sdvp/symbol20.jpg']
     };
     timeline.push(preload);
 
@@ -39,6 +45,7 @@
         press the number 1 on the keyboard as fast as you can.</p>
         <p>If the image is <strong>MORE pleasant</strong> than the average symbol, press the number 9 
         on the keyboard as fast as you can.</p></p>
+        <p>Sometimes, the images presented prior to the symbols can bias your responses about those symbols. Thus, please try to make sure that your responses are not influenced by the images.</p></p>
         <p>Press any key to begin.</p>
       `,
       post_trial_gap: 2000
@@ -46,56 +53,56 @@
     timeline.push(instructions);
 
     /* define test trial stimuli array */
-    var test_stimuli = [
-        {stimulus: 'sdvp/3068.jpg'},
-        {stimulus: 'sdvp/6570.jpg'},
-        {stimulus:'sdvp/SDVPS_1.jpg'},
-        {stimulus:'sdvp/SDVPS_2.jpg'},
-        {stimulus:'sdvp/SDVPS_3.jpg'},
-        {stimulus:'sdvp/SDVPS_4.jpg'},
-        {stimulus:'sdvp/SDVPS_5.jpg'},
-        {stimulus:'sdvp/SDVPS_6.jpg'},
-    ];
-    var test_stimuli1 = [
-        {stimulus: 'symbols/symbol1.jpeg'},
-        {stimulus: 'symbols/symbol2.jpeg'},
-        {stimulus:'symbols/symbol3.jpeg'},
-        {stimulus: 'symbols/symbol4.jpeg'},
-        {stimulus: 'symbols/symbol5.jpeg'},
-        {stimulus: 'symbols/symbol6.jpeg'},
-        {stimulus: 'symbols/symbol7.jpeg'},
-        {stimulus: 'symbols/symbol8.jpeg'},
-   ];
+ var test_stimuli =[
+        {stimulus:'sdvp/3068.jpg', symbol: 'sdvp/symbol1.jpg'},
+        {stimulus:'sdvp/6570.jpg',symbol: 'sdvp/symbol2.jpg'},
+        {stimulus:'sdvp/SDVPS_1.jpg',symbol: 'sdvp/symbol3.jpg'},
+        {stimulus:'sdvp/SDVPS_2.jpg', symbol: 'sdvp/symbol4.jpg'},
+        {stimulus:'sdvp/SDVPS_3.jpg',symbol: 'sdvp/symbol5.jpg'},
+        {stimulus:'sdvp/SDVPS_4.jpg',symbol: 'sdvp/symbol6.jpg'},
+        {stimulus:'sdvp/SDVPS_5.jpg',symbol: 'sdvp/symbol7.jpg'},
+        {stimulus:'sdvp/SDVPS_6.jpg',symbol: 'sdvp/symbol8.jpg'},
+        {stimulus:'sdvp/cs1.jpg',symbol: 'sdvp/symbol9.jpg'},
+        {stimulus:'sdvp/cs2.jpg',symbol: 'sdvp/symbol10.jpg'},
+        {stimulus:'sdvp/cs3.jpg',symbol: 'sdvp/symbol11.jpg'},
+        {stimulus:'sdvp/cs4.jpg',symbol: 'sdvp/symbol12.jpg'},
+        {stimulus:'sdvp/cs5.jpg',symbol: 'sdvp/symbol13.jpg'},
+        {stimulus:'sdvp/cs6.jpg',symbol: 'sdvp/symbol14.jpg'},
+        {stimulus:'sdvp/cs7.jpg',symbol: 'sdvp/symbol15.jpg'},
+        {stimulus:'sdvp/cs8.jpg',symbol: 'sdvp/symbol16.jpg'},
+        {stimulus:'sdvp/cs9.jpg',symbol: 'sdvp/symbol17.jpg'},
+        {stimulus:'sdvp/cs10.jpg',symbol: 'sdvp/symbol18.jpg'},
+        {stimulus:'sdvp/cs11.jpg',symbol: 'sdvp/symbol19.jpg'},
+        {stimulus:'sdvp/cs12.jpg',symbol: 'sdvp/symbol20.jpg'},
+
+      ]
     var fixation = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: '<div style="font-size:60px;">+</div>',
   choices: "NO_KEYS",
   trial_duration: 1000,
-  post_trial_gap: 125,
   data: {
     task: 'fixation'
   }
 };
 var test = {
   type: jsPsychImageKeyboardResponse,
-  stimulus: test_stimuli1,
+  stimulus: jsPsych.timelineVariable('stimulus'),
   choices: "NO_KEYS",
  trial_duration: 75,
+ post_trial_gap: 125,
  };
  var symbol = {
   type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('symbol'),
   choices: "NO_KEYS",
-  trial_duration: 100,
-  data: {
-    task: 'symbol'
-  }
+  trial_duration: 500,
 };
 var response = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: "<p>How would you rate that symbol? </p>",
   choices: ['1', '9'],
- prompt: "<p>Press '1' for LESS pleasant than the average symbol OR '9' for MORE pleasant than the average symbol. </p>",
+ prompt: "<p>Press '1' for LESS pleasant than the average symbol, OR '9' for MORE pleasant than the average symbol. </p>",
  data: {
     task: 'response'},
     on_finish: function(data){
@@ -103,7 +110,7 @@ var response = {
  }
 };
     var test_procedure = {
-      timeline: [fixation,test,symbol,response],
+      timeline: [fixation, test, symbol, response],
       timeline_variables: test_stimuli,
       repetitions: 1,
       randomize_order: true,
