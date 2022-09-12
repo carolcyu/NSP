@@ -20,14 +20,14 @@
     /* preload images */
     var preload = {
       type: jsPsychPreload,
-      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg']
+      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg', 'symbols/symbol1.jpeg','symbols/symbol2.jpeg', 'symbols/symbol3.jpeg','symbols/symbol4.jpeg','symbols/symbol5.jpeg', 'symbols/symbol6.jpeg','symbols/symbol7.jpeg', 'symbols/symbol8.jpeg']
     };
     timeline.push(preload);
 
     /* define welcome message trial */
     var welcome = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: " <p>Welcome to the Modified Affect-Misattribution Task! </p> <p>In this task, you will be asked to rate HOW PLEASANT a SYMBOL is as quickly as you can.  </p> <p>Press any key for instructions. </p>"
+      stimulus: " <p>Welcome to the Modified Affect-Misattribution Task! </p> <p>In this task, you will be asked to rate HOW PLEASANT a SYMBOL is as quickly as you can. </p> <p>Press any key for instructions. </p>"
     };
     timeline.push(welcome);
 
@@ -57,12 +57,14 @@
         {stimulus:'sdvp/SDVPS_6.jpg'},
     ];
     var test_stimuli1 = [
-        {stimulus: 'socialthreat/NS_NT1.jpg'},
-        {stimulus: 'socialthreat/NS_T2.jpg'},
-        {stimulus:'socialthreat/S_NT4_.jpg'},
-        {stimulus: 'socialthreat/NS_T4.jpg'},
-        {stimulus: 'socialthreat/S_NT5_.jpg'},
-        {stimulus: 'socialthreat/NS_T7.jpg'},
+        {stimulus: 'symbols/symbol1.jpeg'},
+        {stimulus: 'symbols/symbol2.jpeg'},
+        {stimulus:'symbols/symbol3.jpeg'},
+        {stimulus: 'symbols/symbol4.jpeg'},
+        {stimulus: 'symbols/symbol5.jpeg'},
+        {stimulus: 'symbols/symbol6.jpeg'},
+        {stimulus: 'symbols/symbol7.jpeg'},
+        {stimulus: 'symbols/symbol8.jpeg'},
    ];
     var fixation = {
   type: jsPsychHtmlKeyboardResponse,
