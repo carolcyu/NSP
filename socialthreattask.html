@@ -31,7 +31,7 @@
     /* define welcome message trial */
     var welcome = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: " <p>Welcome to the Image Rating Task! </p> <p>In this task, you will be asked to rate the HOW PLEASANT an image is as quickly as you can.  </p> <p>Press any key for instructions. </p>"
+      stimulus: " <p>Welcome to the Image Rating Task! </p> <p>In this task, you will be asked to rate HOW PLEASANT an image is, as quickly as you can.  </p> <p>Press any key for instructions. </p>"
     };
     timeline.push(welcome);
 
@@ -285,8 +285,7 @@ var test = {
   type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('stimulus'),
   choices: "NO_KEYS",
- prompt: "<p>Study this image. </p>",
- trial_duration: 1000,
+ trial_duration: 2500,
  };
 var response = {
   type: jsPsychHtmlKeyboardResponse,
