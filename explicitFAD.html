@@ -20,7 +20,7 @@
  /* preload images */
  var preload = {
       type: jsPsychPreload,
-      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg']
+      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg','sdvp/SDVPS_7.jpg','sdvp/SDVPS_8.jpg']
     };
     timeline.push(preload);
 
@@ -35,7 +35,7 @@
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-        <p>In this task, an image will appear on the screen.</p><p>If the image is <strong>very unpleasant</strong>, 
+        <p>In this task, an image will appear on the screen. Please rate how PLEASANT the image is. </p><p>If the image is <strong>very unpleasant</strong>, 
         press the number 1 on the keyboard as fast as you can.</p>
         <p>If the image is <strong>unpleasant</strong>, press the number 2 
         on the keyboard as fast as you can.</p></p>
@@ -58,6 +58,8 @@
         {stimulus:'sdvp/SDVPS_4.jpg'},
         {stimulus:'sdvp/SDVPS_5.jpg'},
         {stimulus:'sdvp/SDVPS_6.jpg'},
+        {stimulus:'sdvp/SDVPS_7.jpg'},
+        {stimulus:'sdvp/SDVPS_8.jpg'},
     ];
     var fixation = {
   type: jsPsychHtmlKeyboardResponse,
