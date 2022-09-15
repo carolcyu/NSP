@@ -13,8 +13,9 @@
 
     /* initialize jsPsych */
     var jsPsych = initJsPsych({
-  on_finish: function() {
-    jsPsych.data.displayData('json');
+      on_finish: function (){
+      var all_data = jsPsych.data.get().localSave('json','iFADampdata.json');
+timeline.push(all_data); 
   }
 });
 var all_data = jsPsych.data.get();

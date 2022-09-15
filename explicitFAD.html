@@ -12,7 +12,12 @@
   <script>
 
     /* initialize jsPsych */
-    var jsPsych = initJsPsych();
+    var jsPsych = initJsPsych({
+      on_finish: function (){
+      var all_data = jsPsych.data.get().localSave('json','eFADdata.json');
+timeline.push(all_data); 
+      }
+});
 
     /* create timeline */
     var timeline = [];
@@ -98,12 +103,16 @@ var debrief_block = {
 
     return `<p>Your average response time was ${rt}ms.</p>
       <p>Press any key to complete the experiment. Thank you for your time!</p>`;
-
-  }
+      }
 };
 timeline.push(debrief_block);
+
+
     /* start the experiment */
     jsPsych.run(timeline);
+
+    /*get data */
+  
 
   </script>
 </html>
