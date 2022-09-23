@@ -2,11 +2,10 @@
 
 <body>
     <div>
-        //input the file type
+        select image to resize
         <input type="file" id="image-input" accept="image/*">
         <img id="preview"></img>
     </div>
-//reconstruct the image
     <script>
         let imgInput = document.getElementById('image-input');
         imgInput.addEventListener('change', function (e) {
@@ -18,21 +17,45 @@
                     img.onload = function (event) {
 
         //dynamically create a canvas element
-                        var canvas = document.createElement("canvas");
+        var canvas = document.createElement("canvas");
 
-                        var canvas = document.getElementById("canvas");
-                        var ctx = canvas.getContext("2d");
-
-                        // Actual resizing
-                        ctx.drawImage(img, 0, 0, 300, 300);
-
-                        // Show resized image in preview element
-                        var dataurl = canvas.toDataURL(imageFile.type);
-                        document.getElementById("preview").src = dataurl;
-                    }
-                    img.src = e.target.result;
-                }
-                reader.readAsDataURL(imageFile);
+        // var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        
+        // Actual resizing
+        var MAX_WIDTH = 1024;
+        var MAX_HEIGHT = 768;
+        var width = img.width;
+        var height = img.height;
+            if (width > height) {
+            if (width > MAX_WIDTH) {
+                height = height * (MAX_WIDTH / width);
+                width = MAX_WIDTH;
+            }
+        } else {
+            if (height > MAX_HEIGHT) {
+                width = width * (MAX_HEIGHT / height);
+                height = MAX_HEIGHT;
+            }
+        }
+        var canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        var ctx = canvas.getContext("2d");
+       
+        ctx.drawImage(img, 0, 0, width, height);
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.msImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
+                        
+        // Show resized image in preview element
+            var dataurl = canvas.toDataURL(imageFile.type);
+            document.getElementById("preview").src = dataurl;
+        }
+        img.src = e.target.result;
+    }
+    reader.readAsDataURL(imageFile);
             }
         });
     </script>
