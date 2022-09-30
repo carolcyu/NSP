@@ -25,7 +25,7 @@ timeline.push(all_data);
  /* preload images */
  var preload = {
       type: jsPsychPreload,
-      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg','sdvp/SDVPS_7.jpg','sdvp/SDVPS_8.jpg']
+      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg', 'sdvp/SDVPS_7.jpg','sdvp/SDVPS_8.jpg','iaps_neg/1525.jpg', 'iaps_neg/2345_1.jpg','iaps_neg/3150.jpg','iaps_neg/3170.jpg','iaps_neg/7380.jpg','iaps_neg/9140.jpg','iaps_neg/9184.jpg','iaps_neg/9301.jpg','iaps_neg/9326.jpg','iaps_neg/9611.jpg','iaps_neg/9903.jpg','iaps_pos/1463.jpg','iaps_pos/1811.jpg','iaps_pos/2071.jpg','iaps_pos/2154.jpg','iaps_pos/4610.jpg','iaps_pos/5480.jpg','iaps_pos/5829.jpg','iaps_pos/7400.jpg','iaps_pos/7492.jpg','iaps_pos/8380.jpg','iaps_pos/8503.jpg', 'iaps_neut/6150.jpg','iaps_neut/7001.jpg','iaps_neut/7002.jpg','iaps_neut/7009.jpg','iaps_neut/7026.jpg','iaps_neut/7052.jpg','iaps_neut/7055.jpg','iaps_neut/7080.jpg','iaps_neut/7100.jpg','iaps_neut/7150.jpg','iaps_neut/7705.jpg']
     };
     timeline.push(preload);
 
@@ -54,7 +54,7 @@ timeline.push(all_data);
     timeline.push(instructions);
 
     /* define test trial stimuli array */
-    var test_stimuli = [
+    var test_stimuli_sdvp = [
         {stimulus: 'sdvp/3068.jpg'},
         {stimulus: 'sdvp/6570.jpg'},
         {stimulus:'sdvp/SDVPS_1.jpg'},
@@ -65,7 +65,46 @@ timeline.push(all_data);
         {stimulus:'sdvp/SDVPS_6.jpg'},
         {stimulus:'sdvp/SDVPS_7.jpg'},
         {stimulus:'sdvp/SDVPS_8.jpg'},
-    ];
+    ]
+var test_stimuli_neg =[        
+        {stimulus:'iaps_neg/1525.jpg'},
+        {stimulus:'iaps_neg/2345_1.jpg'},
+        {stimulus:'iaps_neg/3150.jpg'},
+        {stimulus:'iaps_neg/3170.jpg'},
+        {stimulus:'iaps_neg/7380.jpg'},
+        {stimulus:'iaps_neg/9140.jpg'},
+        {stimulus:'iaps_neg/9184.jpg'},
+        {stimulus:'iaps_neg/9301.jpg'},
+        {stimulus:'iaps_neg/9326.jpg'},
+        {stimulus:'iaps_neg/9611.jpg'},
+        {stimulus:'iaps_neg/9903.jpg'},
+      ]
+  var test_stimuli_pos =[        
+        {stimulus:'iaps_pos/1463.jpg'},
+        {stimulus:'iaps_pos/1811.jpg'},
+        {stimulus:'iaps_pos/2071.jpg'},
+        {stimulus:'iaps_pos/2154.jpg'},
+        {stimulus:'iaps_pos/4610.jpg'},
+        {stimulus:'iaps_pos/5480.jpg'},
+        {stimulus:'iaps_pos/5829.jpg'},
+        {stimulus:'iaps_pos/7400.jpg'},
+        {stimulus:'iaps_pos/7492.jpg'},
+        {stimulus:'iaps_pos/8380.jpg'},
+        {stimulus:'iaps_pos/8503.jpg'},
+      ]
+      var test_stimuli_neut =[        
+        {stimulus:'iaps_neut/6150.jpg'},
+        {stimulus:'iaps_neut/7001.jpg'},
+        {stimulus:'iaps_neut/7002.jpg'},
+        {stimulus:'iaps_neut/7009.jpg'},
+        {stimulus:'iaps_neut/7026.jpg'},
+        {stimulus:'iaps_neut/7052.jpg'},
+        {stimulus:'iaps_neut/7055.jpg'},
+        {stimulus:'iaps_neut/7080.jpg'},
+        {stimulus:'iaps_neut/7100.jpg'},
+        {stimulus:'iaps_neut/7150.jpg'},
+        {stimulus:'iaps_neut/7705.jpg'},
+      ];
     var fixation = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: '<div style="font-size:60px;">+</div>',
@@ -88,7 +127,7 @@ var test = {
 };
     var test_procedure = {
       timeline: [fixation,test],
-      timeline_variables: test_stimuli,
+      timeline_variables: test_stimuli, test_stimuli_sdvp, test_stimuli_neg,test_stimuli_neut,test_stimuli_pos,
       repetitions: 1,
       randomize_order: true
     };
