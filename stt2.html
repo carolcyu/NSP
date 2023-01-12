@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script>
+
+    /* initialize jsPsych */
+    var jsPsych = initJsPsych({
+    on_finish: function (){
+      var all_data = jsPsych.data.get().localSave('json','STTdata.json');
+timeline.push(all_data); 
+      }
+});
+
+    /* create timeline */
+    var timeline = [];
+
+    /* preload images */
+    var preload = {
+      type: jsPsychPreload,
+      images: ['img/key.png','socialthreat/NS_NT1.jpg', 'socialthreat/NS_NT2.jpg', 'socialthreat/NS_NT3.jpg', 'socialthreat/NS_NT4.jpg', 'socialthreat/NS_NT5.jpg', 'socialthreat/NS_NT6.jpg', 'socialthreat/NS_NT7.jpg', 'socialthreat/NS_T1.jpg', 'socialthreat/NS_T2.jpg', 'socialthreat/NS_T3.jpg', 'socialthreat/NS_T4.jpg', 'socialthreat/NS_T5.jpg', 'socialthreat/NS_T6.jpg', 'socialthreat/NS_T7.jpg', 'socialthreat/S_NT1.jpg', 'socialthreat/S_NT2_.jpg','socialthreat/S_NT3_.jpg','socialthreat/S_NT4_.jpg','socialthreat/S_NT5_.jpg','socialthreat/S_NT6_.jpg', 'socialthreat/S_NT7_.jpg', 'socialthreat/S_T1.jpg', 'socialthreat/S_T2.jpg','socialthreat/S_T3_.jpg','socialthreat/S_T4_.jpg', 'socialthreat/S_T5_.jpg', 'socialthreat/S_T6_.jpg', 'socialthreat/S_T7_.jpg']
+    };
+    timeline.push(preload);
+
+    /* define welcome message trial */
+    var welcome = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: " <p>Welcome to the Image Rating Task! </p> <p>In this task, you will be asked to rate <strong>HOW PLEASANT an image is</strong>, as quickly as you can.  </p> <p>Press any key for instructions. </p>"
+    };
+    timeline.push(welcome);
+
+    /* define instructions trial */
+    var instructions = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <p>In this task, an image will appear on the screen.</p><p>If the image is <strong>very unpleasant</strong>,   
+        press the -2 button on the response pad as fast as you can.</p>
+        <p>If the image is <strong>unpleasant</strong>, press the -1 button
+        on the response pad as fast as you can.</p></p>
+        <p>If the image is <strong>pleasant</strong>, press the +1 button
+        on the response pad as fast as you can.</p></p>
+        <p>If the image is <strong>very pleasant</strong>, press the +2 button on the response pad as fast as you can.</p>
+       <p> <img src='img/key.png' width = '700' height='250' alt='Key'></div>
+        </p>
+        <p>Press any key to begin.</p>
+      `,
+      post_trial_gap: 2000
+    };
+    timeline.push(instructions);
+
+    /* define test trial stimuli array */
+    var test_stimulus = [
+
+    {stimulus: 'socialthreat/NS_T7.jpg'},
+        {stimulus: 'socialthreat/NS_T1.jpg'},
+        {stimulus:'socialthreat/NS_T4.jpg'},
+        {stimulus: 'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus: 'socialthreat/NS_T3.jpg'},
+   
+        {stimulus: 'socialthreat/NS_NT6.jpg'},
+        {stimulus: 'socialthreat/NS_NT2.jpg'},
+        {stimulus:'socialthreat/NS_NT5.jpg'},
+        {stimulus: 'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_NT7.jpg'},
+        {stimulus: 'socialthreat/NS_NT4.jpg'},
+        {stimulus: 'socialthreat/NS_NT3.jpg'},
+
+        {stimulus: 'socialthreat/S_T2.jpg'},
+        {stimulus: 'socialthreat/S_T3_.jpg'},
+        {stimulus:'socialthreat/S_T6_.jpg'},
+        {stimulus: 'socialthreat/S_T1.jpg'},
+        {stimulus: 'socialthreat/S_T7_.jpg'},
+        {stimulus: 'socialthreat/S_T5_.jpg'},
+        {stimulus: 'socialthreat/S_T4_.jpg'},
+
+        {stimulus: 'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/S_NT6_.jpg'},
+        {stimulus:'socialthreat/S_NT7_.jpg'},
+        {stimulus: 'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/S_NT2_.jpg'},
+
+        {stimulus: 'socialthreat/NS_NT1.jpg'},
+        {stimulus: 'socialthreat/NS_NT2.jpg'},
+        {stimulus:'socialthreat/NS_NT3.jpg'},
+        {stimulus: 'socialthreat/NS_NT4.jpg'},
+        {stimulus: 'socialthreat/NS_NT5.jpg'},
+        {stimulus: 'socialthreat/NS_NT6.jpg'},
+        {stimulus: 'socialthreat/NS_NT7.jpg'},
+
+        {stimulus: 'socialthreat/S_T1.jpg'},
+        {stimulus: 'socialthreat/S_T2.jpg'},
+        {stimulus:'socialthreat/S_T3_.jpg'},
+        {stimulus: 'socialthreat/S_T4_.jpg'},
+        {stimulus: 'socialthreat/S_T5_.jpg'},
+        {stimulus: 'socialthreat/S_T6_.jpg'},
+        {stimulus: 'socialthreat/S_T7_.jpg'},
+
+        {stimulus: 'socialthreat/NS_T1.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus:'socialthreat/NS_T3.jpg'},
+        {stimulus: 'socialthreat/NS_T4.jpg'},
+        {stimulus: 'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/NS_T7.jpg'},
+
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/S_NT2_.jpg'},
+        {stimulus:'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/S_NT6_.jpg'},
+        {stimulus: 'socialthreat/S_NT7_.jpg'},
+      
+      
+  ];
+    var fixation = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: '<div style="font-size:60px;">+</div>',
+  choices: "NO_KEYS",
+  trial_duration: 1000,
+  data: {
+    task: 'fixation'
+  }
+};
+var test = {
+  type: jsPsychImageKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('stimulus'),
+  choices: "NO_KEYS",
+ trial_duration: 2500,
+ };
+var response = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<p>How would you rate this image? </p>",
+  choices: ['1', '2', '8', '9'],
+ prompt: "<p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant. </p>",
+ data: {
+    task: 'response'},
+    on_finish: function(data){
+    data.response;
+ }
+};
+    var test_procedure = {
+      timeline: [fixation,test,response],
+      timeline_variables: test_stimulus,
+      repetitions: 1,
+      randomize_order: false,
+      post_trial_gap: 500,
+    };
+    timeline.push(test_procedure);
+    
+var debrief_block = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: function() {
+
+    var trials = jsPsych.data.get().filter({task: 'response'});
+    var rt = Math.round(trials.select('rt').mean());
+
+    return `<p>Your average response time was ${rt}ms.</p>
+      <p>Press any key to complete the task. We appreciate your time!</p>`;
+
+  }
+};
+timeline.push(debrief_block);
+    /* start the experiment */
+    jsPsych.run(timeline);
+
+  </script>
+</html>
