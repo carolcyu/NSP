@@ -32,7 +32,7 @@ timeline.push(all_data);
     /* define welcome message trial */
     var welcome = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: " <p>Welcome to the Image Rating Task! </p> <p>In this task, you will be asked to rate HOW PLEASANT an image is, as quickly as you can.  </p> <p>Press any key for instructions. </p>"
+      stimulus: " <p>Welcome to the Image Rating Task! </p> <p>In this task, you will be asked to rate <strong>HOW PLEASANT an image is</strong>, as quickly as you can.  </p> <p>Press any key for instructions. </p>"
     };
     timeline.push(welcome);
 
@@ -41,12 +41,12 @@ timeline.push(all_data);
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <p>In this task, an image will appear on the screen.</p><p>If the image is <strong>very unpleasant</strong>,   
-        press the number -2 on the response pad as fast as you can.</p>
-        <p>If the image is <strong>unpleasant</strong>, press the number -1 
+        press the -2 button on the response pad as fast as you can.</p>
+        <p>If the image is <strong>unpleasant</strong>, press the -1 button
         on the response pad as fast as you can.</p></p>
-        <p>If the image is <strong>pleasant</strong>, press the number +1 
+        <p>If the image is <strong>pleasant</strong>, press the +1 button
         on the response pad as fast as you can.</p></p>
-        <p>If the image is <strong>very pleasant</strong>, press the number +2 on the response pad as fast as you can.</p>
+        <p>If the image is <strong>very pleasant</strong>, press the +2 button on the response pad as fast as you can.</p>
        <p> <img src='img/key.png' width = '700' height='250' alt='Key'></div>
         </p>
         <p>Press any key to begin.</p>
