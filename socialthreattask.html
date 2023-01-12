@@ -55,8 +55,8 @@ timeline.push(all_data);
     };
     timeline.push(instructions);
 
-    /* define test trial stimuli array, 8 blocks */
-    var test_stimuli1 = [
+    /* define test trial stimuli array */
+    var test_stimulus = [
         {stimulus: 'socialthreat/NS_NT1.jpg'},
         {stimulus: 'socialthreat/NS_NT2.jpg'},
         {stimulus:'socialthreat/NS_NT3.jpg'},
@@ -65,8 +65,6 @@ timeline.push(all_data);
         {stimulus: 'socialthreat/NS_NT6.jpg'},
         {stimulus: 'socialthreat/NS_NT7.jpg'},
 
-    ];
-    var test_stimuli2 = [
         {stimulus: 'socialthreat/NS_T1.jpg'},
         {stimulus: 'socialthreat/NS_T2.jpg'},
         {stimulus:'socialthreat/NS_T3.jpg'},
@@ -75,8 +73,6 @@ timeline.push(all_data);
         {stimulus: 'socialthreat/NS_T6.jpg'},
         {stimulus: 'socialthreat/NS_T7.jpg'},
 
-    ];
-    var test_stimuli3 = [
         {stimulus: 'socialthreat/S_NT1.jpg'},
         {stimulus: 'socialthreat/S_NT2_.jpg'},
         {stimulus:'socialthreat/S_NT3_.jpg'},
@@ -84,9 +80,7 @@ timeline.push(all_data);
         {stimulus: 'socialthreat/S_NT5_.jpg'},
         {stimulus: 'socialthreat/S_NT6_.jpg'},
         {stimulus: 'socialthreat/S_NT7_.jpg'},
-
-    ];
-    var test_stimuli4 = [
+        
         {stimulus: 'socialthreat/S_T1.jpg'},
         {stimulus: 'socialthreat/S_T2.jpg'},
         {stimulus:'socialthreat/S_T3_.jpg'},
@@ -94,9 +88,15 @@ timeline.push(all_data);
         {stimulus: 'socialthreat/S_T5_.jpg'},
         {stimulus: 'socialthreat/S_T6_.jpg'},
         {stimulus: 'socialthreat/S_T7_.jpg'},
+
+        {stimulus: 'socialthreat/NS_T7.jpg'},
+        {stimulus: 'socialthreat/NS_T1.jpg'},
+        {stimulus:'socialthreat/NS_T4.jpg'},
+        {stimulus: 'socialthreat/NS_T5.jpg'},
+        {stimulus: 'socialthreat/NS_T6.jpg'},
+        {stimulus: 'socialthreat/NS_T2.jpg'},
+        {stimulus: 'socialthreat/NS_T3.jpg'},
    
-    ];
-    var test_stimuli5 = [
         {stimulus: 'socialthreat/NS_NT6.jpg'},
         {stimulus: 'socialthreat/NS_NT2.jpg'},
         {stimulus:'socialthreat/NS_NT5.jpg'},
@@ -105,27 +105,6 @@ timeline.push(all_data);
         {stimulus: 'socialthreat/NS_NT4.jpg'},
         {stimulus: 'socialthreat/NS_NT3.jpg'},
 
-    ];
-    var test_stimuli6 = [
-        {stimulus: 'socialthreat/NS_T7.jpg'},
-        {stimulus: 'socialthreat/NS_T1.jpg'},
-        {stimulus:'socialthreat/NS_T4.jpg'},
-        {stimulus: 'socialthreat/NS_T5.jpg'},
-        {stimulus: 'socialthreat/NS_T6.jpg'},
-        {stimulus: 'socialthreat/NS_T2.jpg'},
-        {stimulus: 'socialthreat/NS_T3.jpg'},
-
-    ];
-    var test_stimuli7 = [
-        {stimulus: 'socialthreat/S_NT4_.jpg'},
-        {stimulus: 'socialthreat/S_NT6_.jpg'},
-        {stimulus:'socialthreat/S_NT7_.jpg'},
-        {stimulus: 'socialthreat/S_NT3_.jpg'},
-        {stimulus: 'socialthreat/S_NT5_.jpg'},
-        {stimulus: 'socialthreat/S_NT1.jpg'},
-        {stimulus: 'socialthreat/S_NT2_.jpg'},
-    ];
-    var test_stimuli8 = [
         {stimulus: 'socialthreat/S_T2.jpg'},
         {stimulus: 'socialthreat/S_T3_.jpg'},
         {stimulus:'socialthreat/S_T6_.jpg'},
@@ -133,12 +112,21 @@ timeline.push(all_data);
         {stimulus: 'socialthreat/S_T7_.jpg'},
         {stimulus: 'socialthreat/S_T5_.jpg'},
         {stimulus: 'socialthreat/S_T4_.jpg'},
+
+        {stimulus: 'socialthreat/S_NT4_.jpg'},
+        {stimulus: 'socialthreat/S_NT6_.jpg'},
+        {stimulus:'socialthreat/S_NT7_.jpg'},
+        {stimulus: 'socialthreat/S_NT3_.jpg'},
+        {stimulus: 'socialthreat/S_NT5_.jpg'},
+        {stimulus: 'socialthreat/S_NT1.jpg'},
+        {stimulus: 'socialthreat/S_NT2_.jpg'},
+      
   ];
     var fixation = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: '<div style="font-size:60px;">+</div>',
   choices: "NO_KEYS",
-  trial_duration: 1500,
+  trial_duration: 1000,
   data: {
     task: 'fixation'
   }
@@ -162,9 +150,9 @@ var response = {
 };
     var test_procedure = {
       timeline: [fixation,test,response],
-      timeline_variables: test_stimuli1, test_stimuli2, test_stimuli3,test_stimuli4,test_stimuli5,test_stimuli6,test_stimuli7,test_stimuli8,
+      timeline_variables: test_stimulus,
       repetitions: 1,
-      randomize_order: true,
+      randomize_order: false,
       post_trial_gap: 500,
     };
     timeline.push(test_procedure);
