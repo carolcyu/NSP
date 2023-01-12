@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome (E-FAD)</title>
+    <title>Welcome (E-FAD Scanner)</title>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
@@ -14,7 +14,7 @@
     /* initialize jsPsych */
     var jsPsych = initJsPsych({
       on_finish: function (){
-      var all_data = jsPsych.data.get().localSave('json','eFADdata.json');
+      var all_data = jsPsych.data.get().localSave('json','eFADscandata.json');
 timeline.push(all_data); 
       }
 });
@@ -25,14 +25,14 @@ timeline.push(all_data);
  /* preload images */
  var preload = {
       type: jsPsychPreload,
-      images: ['sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg', 'sdvp/SDVPS_7.jpg','sdvp/SDVPS_8.jpg','iaps_neg/1525.jpg', 'iaps_neg/2345_1.jpg','iaps_neg/3150.jpg','iaps_neg/3170.jpg','iaps_neg/7380.jpg','iaps_neg/9140.jpg','iaps_neg/9184.jpg','iaps_neg/9301.jpg','iaps_neg/9326.jpg','iaps_neg/9611.jpg','iaps_neg/9903.jpg','iaps_pos/1463.jpg','iaps_pos/1811.jpg','iaps_pos/2071.jpg','iaps_pos/2154.jpg','iaps_pos/4610.jpg','iaps_pos/5480.jpg','iaps_pos/5829.jpg','iaps_pos/7400.jpg','iaps_pos/7492.jpg','iaps_pos/8380.jpg','iaps_pos/8503.jpg', 'iaps_neut/6150.jpg','iaps_neut/7001.jpg','iaps_neut/7002.jpg','iaps_neut/7009.jpg','iaps_neut/7026.jpg','iaps_neut/7052.jpg','iaps_neut/7055.jpg','iaps_neut/7080.jpg','iaps_neut/7100.jpg','iaps_neut/7150.jpg','iaps_neut/7705.jpg']
+      images: ['img/key.png','sdvp/3068.jpg', 'sdvp/6570.jpg', 'sdvp/SDVPS_1.jpg', 'sdvp/SDVPS_2.jpg', 'sdvp/SDVPS_3.jpg', 'sdvp/SDVPS_4.jpg', 'sdvp/SDVPS_5.jpg', 'sdvp/SDVPS_6.jpg', 'sdvp/SDVPS_7.jpg','sdvp/SDVPS_8.jpg','iaps_neg/1525.jpg', 'iaps_neg/2345_1.jpg','iaps_neg/3150.jpg','iaps_neg/3170.jpg','iaps_neg/7380.jpg','iaps_neg/9140.jpg','iaps_neg/9184.jpg','iaps_neg/9301.jpg','iaps_neg/9326.jpg','iaps_neg/9611.jpg','iaps_neg/9903.jpg','iaps_pos/1463.jpg','iaps_pos/1811.jpg','iaps_pos/2071.jpg','iaps_pos/2154.jpg','iaps_pos/4610.jpg','iaps_pos/5480.jpg','iaps_pos/5829.jpg','iaps_pos/7400.jpg','iaps_pos/7492.jpg','iaps_pos/8380.jpg','iaps_pos/8503.jpg', 'iaps_neut/6150.jpg','iaps_neut/7001.jpg','iaps_neut/7002.jpg','iaps_neut/7009.jpg','iaps_neut/7026.jpg','iaps_neut/7052.jpg','iaps_neut/7055.jpg','iaps_neut/7080.jpg','iaps_neut/7100.jpg','iaps_neut/7150.jpg','iaps_neut/7705.jpg']
     };
     timeline.push(preload);
 
     /* define welcome message trial */
     var welcome = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: "Welcome to another Image Rating Task! </p> <p>In this task, you will be asked to rate images based on VALENCE, AROUSAL, and FEAR. </p> <p>Press any key for instructions. </p>"
+      stimulus: "Welcome to another Image Rating Task! </p> <p>In this task, you will be asked to rate  <strong>HOW PLEASANT an image is</strong>, as quickly as you can. </p> <p>Press any key for instructions. </p>"
     };
     timeline.push(welcome);
 
@@ -40,13 +40,15 @@ timeline.push(all_data);
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-        <p>In this task, an image will appear on the screen. Please rate how PLEASANT the image is. </p><p>If the image is <strong>very unpleasant</strong>, 
-        press the number 1 on the keyboard as fast as you can.</p>
-        <p>If the image is <strong>unpleasant</strong>, press the number 2 
-        on the keyboard as fast as you can.</p></p>
-        <p>If the image is <strong>pleasant</strong>, press the number 8 
-        on the keyboard as fast as you can.</p></p>
-        <p>If the image is <strong>very pleasant</strong>, press the number 9 on the keyboard as fast as you can.</p>
+      <p>In this task, an image will appear on the screen.</p><p>If the image is <strong>very unpleasant</strong>,   
+        press the -2 button on the response pad as fast as you can.</p>
+        <p>If the image is <strong>unpleasant</strong>, press the -1 button
+        on the response pad as fast as you can.</p></p>
+        <p>If the image is <strong>pleasant</strong>, press the +1 button
+        on the response pad as fast as you can.</p></p>
+        <p>If the image is <strong>very pleasant</strong>, press the +2 button on the response pad as fast as you can.</p>
+       <p> <img src='img/key.png' width = '700' height='250' alt='Key'></div>
+        </p>
         <p>Press any key to begin.</p>
       `,
       post_trial_gap: 2000
@@ -54,32 +56,20 @@ timeline.push(all_data);
     timeline.push(instructions);
 
     /* define test trial stimuli array */
-    var test_stimuli_sdvp = [
-        {stimulus: 'sdvp/3068.jpg'},
-        {stimulus: 'sdvp/6570.jpg'},
-        {stimulus:'sdvp/SDVPS_1.jpg'},
-        {stimulus:'sdvp/SDVPS_2.jpg'},
-        {stimulus:'sdvp/SDVPS_3.jpg'},
-        {stimulus:'sdvp/SDVPS_4.jpg'},
-        {stimulus:'sdvp/SDVPS_5.jpg'},
-        {stimulus:'sdvp/SDVPS_6.jpg'},
-        {stimulus:'sdvp/SDVPS_7.jpg'},
-        {stimulus:'sdvp/SDVPS_8.jpg'},
-    ]
-var test_stimuli_neg =[        
-        {stimulus:'iaps_neg/1525.jpg'},
-        {stimulus:'iaps_neg/2345_1.jpg'},
-        {stimulus:'iaps_neg/3150.jpg'},
-        {stimulus:'iaps_neg/3170.jpg'},
-        {stimulus:'iaps_neg/7380.jpg'},
-        {stimulus:'iaps_neg/9140.jpg'},
-        {stimulus:'iaps_neg/9184.jpg'},
-        {stimulus:'iaps_neg/9301.jpg'},
-        {stimulus:'iaps_neg/9326.jpg'},
-        {stimulus:'iaps_neg/9611.jpg'},
-        {stimulus:'iaps_neg/9903.jpg'},
-      ]
-  var test_stimuli_pos =[        
+    var test_stimuli = [
+
+    {stimulus:'iaps_neut/6150.jpg'},
+        {stimulus:'iaps_neut/7001.jpg'},
+        {stimulus:'iaps_neut/7002.jpg'},
+        {stimulus:'iaps_neut/7009.jpg'},
+        {stimulus:'iaps_neut/7026.jpg'},
+        {stimulus:'iaps_neut/7052.jpg'},
+        {stimulus:'iaps_neut/7055.jpg'},
+        {stimulus:'iaps_neut/7080.jpg'},
+        {stimulus:'iaps_neut/7100.jpg'},
+        {stimulus:'iaps_neut/7150.jpg'},
+        {stimulus:'iaps_neut/7705.jpg'},
+
         {stimulus:'iaps_pos/1463.jpg'},
         {stimulus:'iaps_pos/1811.jpg'},
         {stimulus:'iaps_pos/2071.jpg'},
@@ -91,19 +81,30 @@ var test_stimuli_neg =[
         {stimulus:'iaps_pos/7492.jpg'},
         {stimulus:'iaps_pos/8380.jpg'},
         {stimulus:'iaps_pos/8503.jpg'},
-      ]
-      var test_stimuli_neut =[        
-        {stimulus:'iaps_neut/6150.jpg'},
-        {stimulus:'iaps_neut/7001.jpg'},
-        {stimulus:'iaps_neut/7002.jpg'},
-        {stimulus:'iaps_neut/7009.jpg'},
-        {stimulus:'iaps_neut/7026.jpg'},
-        {stimulus:'iaps_neut/7052.jpg'},
-        {stimulus:'iaps_neut/7055.jpg'},
-        {stimulus:'iaps_neut/7080.jpg'},
-        {stimulus:'iaps_neut/7100.jpg'},
-        {stimulus:'iaps_neut/7150.jpg'},
-        {stimulus:'iaps_neut/7705.jpg'},
+
+        {stimulus: 'sdvp/3068.jpg'},
+        {stimulus: 'sdvp/6570.jpg'},
+        {stimulus:'sdvp/SDVPS_1.jpg'},
+        {stimulus:'sdvp/SDVPS_2.jpg'},
+        {stimulus:'sdvp/SDVPS_3.jpg'},
+        {stimulus:'sdvp/SDVPS_4.jpg'},
+        {stimulus:'sdvp/SDVPS_5.jpg'},
+        {stimulus:'sdvp/SDVPS_6.jpg'},
+        {stimulus:'sdvp/SDVPS_7.jpg'},
+        {stimulus:'sdvp/SDVPS_8.jpg'},
+        
+        {stimulus:'iaps_neg/1525.jpg'},
+        {stimulus:'iaps_neg/2345_1.jpg'},
+        {stimulus:'iaps_neg/3150.jpg'},
+        {stimulus:'iaps_neg/3170.jpg'},
+        {stimulus:'iaps_neg/7380.jpg'},
+        {stimulus:'iaps_neg/9140.jpg'},
+        {stimulus:'iaps_neg/9184.jpg'},
+        {stimulus:'iaps_neg/9301.jpg'},
+        {stimulus:'iaps_neg/9326.jpg'},
+        {stimulus:'iaps_neg/9611.jpg'},
+        {stimulus:'iaps_neg/9903.jpg'},
+
       ];
     var fixation = {
   type: jsPsychHtmlKeyboardResponse,
@@ -118,7 +119,7 @@ var test = {
   type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('stimulus'),
   choices: ['1', '2', '8', '9'],
- prompt: "<p>How would you rate this image? </p><p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>",
+ prompt: "<p>How would you rate this image? </p> <p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant. </p>",
  data: {
     task: 'response'},
     on_finish: function(data){
@@ -127,9 +128,9 @@ var test = {
 };
     var test_procedure = {
       timeline: [fixation,test],
-      timeline_variables: test_stimuli_sdvp, test_stimuli_neg,test_stimuli_neut,test_stimuli_pos,
+      timeline_variables: test_stimuli,
       repetitions: 1,
-      randomize_order: true
+      randomize_order: false
     };
     timeline.push(test_procedure);
     
