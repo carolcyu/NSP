@@ -41,12 +41,12 @@ timeline.push(all_data);
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <p>In this task, an image will appear on the screen.</p><p>If the image is <strong>very unpleasant</strong>,   
-        press the number 1 on the keyboard as fast as you can.</p>
-        <p>If the image is <strong>unpleasant</strong>, press the number 2 
+        press the number -2 on the keyboard as fast as you can.</p>
+        <p>If the image is <strong>unpleasant</strong>, press the number -1 
         on the keyboard as fast as you can.</p></p>
-        <p>If the image is <strong>pleasant</strong>, press the number 8 
+        <p>If the image is <strong>pleasant</strong>, press the number +1 
         on the keyboard as fast as you can.</p></p>
-        <p>If the image is <strong>very pleasant</strong>, press the number 9 on the keyboard as fast as you can.</p>
+        <p>If the image is <strong>very pleasant</strong>, press the number +2 on the keyboard as fast as you can.</p>
        <p> <img src='img/key.png' width = '900' height='250' alt='Key'></div>
         </p>
         <p>Press any key to begin.</p>
@@ -55,7 +55,7 @@ timeline.push(all_data);
     };
     timeline.push(instructions);
 
-    /* define test trial stimuli array, 7 blocks */
+    /* define test trial stimuli array, 8 blocks */
     var test_stimuli1 = [
         {stimulus: 'socialthreat/NS_NT1.jpg'},
         {stimulus: 'socialthreat/NS_NT2.jpg'},
@@ -153,7 +153,7 @@ var response = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: "<p>How would you rate this image? </p>",
   choices: ['1', '2', '8', '9'],
- prompt: "<p>Press '1' for very unpleasant, '2' for unpleasant, '8' for pleasant, or '9' for very pleasant. </p>",
+ prompt: "<p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant. </p>",
  data: {
     task: 'response'},
     on_finish: function(data){
