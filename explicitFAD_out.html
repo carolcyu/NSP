@@ -144,8 +144,6 @@ var test_procedure = {
       randomize_order: false
     };
     timeline.push(test_procedure);
-    
-    jsPsych.run(timeline);
 
     var debrief_block = {
   type: jsPsychHtmlKeyboardResponse,
@@ -153,5 +151,6 @@ var test_procedure = {
 };
 timeline.push(debrief_block);
 
+jsPsych.run(timeline);
   </script>
 </html>
