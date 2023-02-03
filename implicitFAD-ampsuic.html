@@ -6,6 +6,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-categorize-html@1.1.2"></script>
     <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
@@ -59,6 +60,91 @@ console.log(all_data.csv());
     };
     timeline.push(instructions);
 
+    /* practice trials x4*/
+var practice1 = {
+  type: jsPsychCategorizeHtml,
+  stimulus: "<p>Let's practice! </p> <p><strong>Please press the -2 button.</strong></p>",
+  choices: ['1', '2', '3', '4'],
+  key_answer: '1',
+  text_answer: '-2 button for very unpleasant',
+  correct_text: "<p class='prompt'>Correct, this is the %ANS%.</p>",
+  incorrect_text: "<p class='prompt'>Please try again.</p>",
+ prompt: "<p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant. </p>",
+force_correct_button_press: true, 
+data: {
+    task: 'response'},
+    on_finish: function(data){
+    data.response;
+ }
+};
+timeline.push(practice1);
+
+var practice2 = {
+  type: jsPsychCategorizeHtml,
+  stimulus: "<p><strong>Please press the +1 button.</strong></p>",
+  choices: ['1', '2', '3', '4'],
+  key_answer: '3',
+  text_answer: '+1 button for pleasant',
+  correct_text: "<p class='prompt'>Correct, this is the %ANS%.</p>",
+  incorrect_text: "<p class='prompt'>Please try again.</p>",
+ prompt: "<p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant. </p>",
+force_correct_button_press: true, 
+data: {
+    task: 'response'},
+    on_finish: function(data){
+    data.response;
+ }
+};
+timeline.push(practice2);
+
+var practice3 = {
+  type: jsPsychCategorizeHtml,
+  stimulus: "<p>Let's practice again! </p> <p><strong>Please press the +2 button.</strong></p>",
+  choices: ['1', '2', '3', '4'],
+  key_answer: '4',
+  text_answer: '+2 button for very pleasant',
+  correct_text: "<p class='prompt'>Correct, this is the %ANS%.</p>",
+  incorrect_text: "<p class='prompt'>Please try again.</p>",
+ prompt: "<p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant. </p>",
+force_correct_button_press: true, 
+data: {
+    task: 'response'},
+    on_finish: function(data){
+    data.response;
+ }
+};
+timeline.push(practice3);
+
+var practice4 = {
+  type: jsPsychCategorizeHtml,
+  stimulus: "<p><strong>Please press the -1 button.</strong></p>",
+  choices: ['1', '2', '3', '4'],
+  key_answer: '2',
+  text_answer: '-1 button for unpleasant',
+  correct_text: "<p class='prompt'>Correct, this is the %ANS%.</p>",
+  incorrect_text: "<p class='prompt'>Please try again.</p>",
+ prompt: "<p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant. </p>",
+force_correct_button_press: true, 
+data: {
+    task: 'response'},
+    on_finish: function(data){
+    data.response;
+ }
+};
+timeline.push(practice4);
+/*define trial awaiting for the scanner keyboard button #5 */
+var MRIstart ={
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<p> Please wait while the scanner starts up. This will take a few minutes. </strong></p>",
+  choices: ['5'],
+ prompt: "<p>This screen will change when the tasks starts. A + will appear when the task has started. </p>",
+ data: {
+    task: 'response'},
+    on_finish: function(data){
+    data.response;
+ }
+};
+timeline.push(MRIstart);
     /* define test trial stimuli array */
  var test_stimuli =[
          
@@ -135,7 +221,7 @@ var test = {
 var response = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: "<p>How would you rate the symbol you saw <strong>compared to the average symbol?</strong> </p>",
-  choices: ['1', '2', '8','9'],
+  choices: ['1', '2', '3','4'],
   trial_duration: 3000,
  prompt: "<p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant compared to the average symbol. </p>",
  data: {
