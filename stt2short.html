@@ -7,10 +7,11 @@
     <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
     <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="my_experiment_style_MRI.css">
   </head>
   <body></body>
   <script>
-/* TASK INFO: social threat task with 4 blocks, 1 per condition; no practice trials; and alternative order to stt2.html */
+/* TASK INFO: social threat task with 4 blocks, 1 per condition; no practice trials; and alternative order to sttshort.html */
 
     /* initialize jsPsych */
     var jsPsych = initJsPsych({
@@ -59,9 +60,9 @@ timeline.push(all_data);
     /*define trial awaiting for the scanner keyboard button #5 */
 var MRIstart ={
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: "<p> Please wait while the scanner starts up. This will take a few minutes. </strong></p>",
+  stimulus: "<p> Please wait while the scanner starts up. This will take 10 seconds. </strong></p>",
   choices: ['5'],
- prompt: "<p>This screen will change when the tasks starts. A + will appear when the task has started. </p>",
+ prompt: "<p>This screen will change when the tasks starts. A cross (+) will appear when the task starts. </p>",
  data: {
     task: 'response'},
     on_finish: function(data){
@@ -104,8 +105,6 @@ timeline.push(MRIstart);
         {stimulus: 'socialthreat/S_NT5_.jpg'},
         {stimulus: 'socialthreat/S_NT1.jpg'},
         {stimulus: 'socialthreat/S_NT2_.jpg'},
-      
-      
   ];
     var fixation = {
   type: jsPsychHtmlKeyboardResponse,
@@ -127,7 +126,6 @@ var response = {
   stimulus: "<p>How would you rate this image? </p>",
   choices: ['1', '2', '3', '4'],
   trial_duration: 3000,
- prompt: "<p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant. </p>",
  data: {
     task: 'response'},
     on_finish: function(data){
