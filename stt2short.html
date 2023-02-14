@@ -27,14 +27,14 @@ timeline.push(all_data);
     /* preload images */
     var preload = {
       type: jsPsychPreload,
-      images: ['img/key.png','socialthreat/NS_NT1.jpg', 'socialthreat/NS_NT2.jpg', 'socialthreat/NS_NT3.jpg', 'socialthreat/NS_NT4.jpg', 'socialthreat/NS_NT5.jpg', 'socialthreat/NS_NT6.jpg', 'socialthreat/NS_NT7.jpg', 'socialthreat/NS_T1.jpg', 'socialthreat/NS_T2.jpg', 'socialthreat/NS_T3.jpg', 'socialthreat/NS_T4.jpg', 'socialthreat/NS_T5.jpg', 'socialthreat/NS_T6.jpg', 'socialthreat/NS_T7.jpg', 'socialthreat/S_NT1.jpg', 'socialthreat/S_NT2_.jpg','socialthreat/S_NT3_.jpg','socialthreat/S_NT4_.jpg','socialthreat/S_NT5_.jpg','socialthreat/S_NT6_.jpg', 'socialthreat/S_NT7_.jpg', 'socialthreat/S_T1.jpg', 'socialthreat/S_T2.jpg','socialthreat/S_T3_.jpg','socialthreat/S_T4_.jpg', 'socialthreat/S_T5_.jpg', 'socialthreat/S_T6_.jpg', 'socialthreat/S_T7_.jpg']
+      images: ['img/key.png','img/practice1.jpg','img/practice2.jpg','img/practice3.jpg','img/practice4.jpg','socialthreat/NS_NT1.jpg', 'socialthreat/NS_NT2.jpg', 'socialthreat/NS_NT3.jpg', 'socialthreat/NS_NT4.jpg', 'socialthreat/NS_NT5.jpg', 'socialthreat/NS_NT6.jpg', 'socialthreat/NS_NT7.jpg', 'socialthreat/NS_T1.jpg', 'socialthreat/NS_T2.jpg', 'socialthreat/NS_T3.jpg', 'socialthreat/NS_T4.jpg', 'socialthreat/NS_T5.jpg', 'socialthreat/NS_T6.jpg', 'socialthreat/NS_T7.jpg', 'socialthreat/S_NT1.jpg', 'socialthreat/S_NT2_.jpg','socialthreat/S_NT3_.jpg','socialthreat/S_NT4_.jpg','socialthreat/S_NT5_.jpg','socialthreat/S_NT6_.jpg', 'socialthreat/S_NT7_.jpg', 'socialthreat/S_T1.jpg', 'socialthreat/S_T2.jpg','socialthreat/S_T3_.jpg','socialthreat/S_T4_.jpg', 'socialthreat/S_T5_.jpg', 'socialthreat/S_T6_.jpg', 'socialthreat/S_T7_.jpg']
     };
     timeline.push(preload);
 
     /* define welcome message trial */
     var welcome = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: " <p>Welcome to the Image Rating Task! </p> <p>In this task, you will be asked to rate <strong>HOW PLEASANT an image is</strong>, as quickly as you can.  </p> <p>Press any key for instructions. </p>"
+      stimulus: " <p>Welcome to the Image Rating Task! </p> <p>Press any button for instructions. </p>"
     };
     timeline.push(welcome);
 
@@ -42,27 +42,33 @@ timeline.push(all_data);
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-        <p>In this task, an image will appear on the screen.</p><p>If the image is <strong>very unpleasant</strong>,   
-        press the -2 button on the response pad as fast as you can.</p>
-        <p>If the image is <strong>unpleasant</strong>, press the -1 button
-        on the response pad as fast as you can.</p></p>
-        <p>If the image is <strong>pleasant</strong>, press the +1 button
-        on the response pad as fast as you can.</p></p>
-        <p>If the image is <strong>very pleasant</strong>, press the +2 button on the response pad as fast as you can.</p>
-       <p> <img src='img/key.png' width = '700' height='250' alt='Key'></div>
+        <p>In this task, an image will appear on the screen.</p> <p>Using the response pad, please rate <strong>HOW PLEASANT an image is</strong>, as quickly as you can.</p>
+        <p>If the image is...</p>     
+          <p><strong>Very unpleasant</strong>, press the button 1</p>
+        <p><strong>Unpleasant</strong>, press the button 2</p>
+        <p><strong>Pleasant</strong>, press the button 3</p>
+        <p><strong>Very pleasant</strong>, press the button 4.</p>
+       <p> <img src='img/key.png' width = '538' height='238' alt='Key'></div>
         </p>
-        <p>Press any key to begin.</p>
+        <p>Press any button to continue.</p>
       `,
-      post_trial_gap: 2000
+      post_trial_gap: 1000
     };
     timeline.push(instructions);
 
-    /*define trial awaiting for the scanner keyboard button #5 */
+    /*questions for the examiner*/
+var questions = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<p>If you have questions or concerns, please signal to the examiner. </p> <p>If not, press any button to continue. </p>"
+    };
+    timeline.push(questions);
+
+/*define trial awaiting for the scanner keyboard button #5 */
 var MRIstart ={
   type: jsPsychHtmlKeyboardResponse,
   stimulus: "<p> Please wait while the scanner starts up. This will take 10 seconds. </strong></p>",
   choices: ['5'],
- prompt: "<p>This screen will change when the tasks starts. A cross (+) will appear when the task starts. </p>",
+ prompt: "<p> A cross (+) will appear when the task starts. </p>",
  data: {
     task: 'response'},
     on_finish: function(data){
