@@ -162,9 +162,10 @@ var test = {
 };
 var response = {
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: "<p>How would you rate the symbol you saw <strong>compared to the average symbol?</strong> </p>",
+  stimulus: "<p>How would you rate that symbol <strong>compared to the average symbol?</strong> </p>",
   choices: ['1', '2', '3','4'],
-  trial_duration: 3000,
+  trial_duration: 2500,
+  response_ends_trial: false,
  data: {
     task: 'response'},
     on_finish: function(data){
