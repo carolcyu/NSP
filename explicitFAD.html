@@ -212,6 +212,12 @@ timeline.push(MRIstart);
 var test = {
   type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('stimulus'),
+  choices: "NO_KEYS",
+ trial_duration: 2000,
+ };
+var response = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<p>How would you rate this image? </p>",
   choices: ['1', '2', '3', '4'],
   trial_duration: 3000,
   response_ends_trial: false,
@@ -219,13 +225,14 @@ var test = {
     task: 'response'},
     on_finish: function(data){
     data.response;
-  }
+ }
 };
     var test_procedure = {
-      timeline: [fixation,test],
+      timeline: [fixation,test, response],
       timeline_variables: test_stimuli,
       repetitions: 1,
-      randomize_order: false
+      randomize_order: false,
+      post_trial_gap: 500,
     };
     timeline.push(test_procedure);
     
