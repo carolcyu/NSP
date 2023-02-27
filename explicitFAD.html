@@ -17,7 +17,7 @@
     /* initialize jsPsych */
     var jsPsych = initJsPsych({
       on_finish: function (){
-      var all_data = jsPsych.data.get().localSave('json','eFADscandata.json');
+      var all_data = jsPsych.data.get().localSave('json','eFADdata.json');
 timeline.push(all_data); 
       }
 });
@@ -49,86 +49,12 @@ timeline.push(all_data);
         <p><strong>Unpleasant</strong>, press the button 2</p>
         <p><strong>Pleasant</strong>, press the button 3</p>
         <p><strong>Very pleasant</strong>, press the button 4.</p>
-       <p> <img src='img/key.png' width = '538' height='238' alt='Key'></div>
-        </p>
+       <p> <img src='img/key.png' width = '461' height='227' alt='Key'></div> </p>
         <p>Press any button to continue.</p>
       `,
       post_trial_gap: 1000
     };
     timeline.push(instructions);
-    /* practice trials x4*/
-var practice1 = {
-  type: jsPsychCategorizeHtml,
-  stimulus: "<img src='img/practice1.jpg' alt='practice1'>",
-  choices: ['1', '2', '3', '4'],
-  key_answer: '1',
-  text_answer: '1 button for Very Unpleasant',
-  correct_text: "<p class='prompt'>Correct, this is the %ANS%.</p>",
-  incorrect_text: "<p class='prompt'>Please try again.</p>",
- prompt: "<p>Press '-2' for very unpleasant, '-1' for unpleasant, '+1' for pleasant, or '+2' for very pleasant. </p>",
-force_correct_button_press: true, 
-prompt: "<p>Let's practice! </p> <p><strong>Please rate this image as Very Unpleasant.</strong></p>",
-data: {
-    task: 'response'},
-    on_finish: function(data){
-    data.response;
- }
-};
-timeline.push(practice1);
-
-var practice2 = {
-  type: jsPsychCategorizeHtml,
-  stimulus: "<img src='img/practice2.jpg'alt='practice2'>",
-  choices: ['1', '2', '3', '4'],
-  key_answer: '3',
-  text_answer: '3 button for Pleasant',
-  correct_text: "<p class='prompt'>Correct, this is the %ANS%.</p>",
-  incorrect_text: "<p class='prompt'>Please try again.</p>",
-  prompt: "<p><strong>Please rate this image as Pleasant.</strong></p>",
-force_correct_button_press: true, 
-data: {
-    task: 'response'},
-    on_finish: function(data){
-    data.response;
- }
-};
-timeline.push(practice2);
-
-var practice3 = {
-  type: jsPsychCategorizeHtml,
-  stimulus: "<img src='img/practice3.jpg' alt='practice3'>",
-  choices: ['1', '2', '3', '4'],
-  key_answer: '4',
-  text_answer: '4 button for Very Pleasant',
-  correct_text: "<p class='prompt'>Correct, this is the %ANS%.</p>",
-  incorrect_text: "<p class='prompt'>Please try again.</p>",
-  prompt: "<p>Let's practice again! </p> <p><strong>Please rate this image as Very Pleasant.</strong></p>",
-force_correct_button_press: true, 
-data: {
-    task: 'response'},
-    on_finish: function(data){
-    data.response;
- }
-};
-timeline.push(practice3);
-
-var practice4 = {
-  type: jsPsychCategorizeHtml,
-  stimulus: "<img src='img/practice4.jpg' alt='practice4'>",
-  choices: ['1', '2', '3', '4'],
-  key_answer: '2',
-  text_answer: '2 button for unpleasant',
-  correct_text: "<p class='prompt'>Correct, this is the %ANS%.</p>",
-  incorrect_text: "<p class='prompt'>Please try again.</p>",
-  prompt: "<p><strong>Please rate this image as Unpleasant.</strong></p>",
-force_correct_button_press: true, 
-data: {
-    task: 'response'},
-    on_finish: function(data){
-    data.response;
- }
-};
-timeline.push(practice4);
 
 /*questions for the examiner*/
 var questions = {
