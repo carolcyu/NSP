@@ -16,7 +16,7 @@
     /* initialize jsPsych */
     var jsPsych = initJsPsych({
       on_finish: function (){
-      var all_data = jsPsych.data.get().localSave('json','iFADampdata.json');
+      var all_data = jsPsych.data.get().localSave('json','iFADamp2data.json');
 timeline.push(all_data); 
   }
 });
@@ -44,7 +44,8 @@ console.log(all_data.csv());
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-        <p>In this task, an image will appear on the screen followed by a symbol.</p><p>Using the response pad, please rate <strong>HOW PLEASANT a SYMBOL is compared to the average symbol</strong>, as quickly as you can. </p>
+        <p>In this task, an image will appear on the screen followed by a symbol.</p><p>Using the response pad, please rate <strong>HOW PLEASANT a SYMBOL is</strong>, as quickly as you can. </p>
+        <p>Try to focus on rating the symbol.</p>
         <p>Press any button to continue.</p>
       `,
       post_trial_gap: 1000
@@ -53,13 +54,12 @@ console.log(all_data.csv());
     var instructions2 = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
-       <p>If the symbol is...</p> <p><strong>Very unpleasant</strong> compared to the average symbol, press the button 1</p>
-        <p><strong>Unpleasant</strong> compared to the average symbol, press the button 2</p>
-        <p><strong>Pleasant</strong> compared to the average symbol, press the button 3</p>
-        <p><strong>Very pleasant</strong> compared to the average symbol, press the button 4.</p>
-       <p> <img src='img/key.png' width = '538' height='238' alt='Key'></div>
+       <p>If the symbol is...</p> <p><strong>Very unpleasant</strong>, press the button 1</p>
+        <p><strong>Unpleasant</strong>, press the button 2</p>
+        <p><strong>Pleasant</strong>, press the button 3</p>
+        <p><strong>Very pleasant</strong>, press the button 4.</p>
+       <p> <img src='img/key.png' width = '461' height='227' alt='Key'></div>
         </p>
-     <p><strong>Remember: Try to respond as quickly as you can! </strong></p> 
         <p>Press any button to continue.</p>
       `,
       post_trial_gap: 1000
@@ -148,18 +148,18 @@ var test = {
   type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('stimulus'),
   choices: "NO_KEYS",
- trial_duration: 125,
+ trial_duration: 75,
  post_trial_gap: 125,
  };
  var symbol = {
   type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('symbol'),
   choices: "NO_KEYS",
-  trial_duration: 500,
+  trial_duration: 100,
 };
 var response = {
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: "<p>How would you rate that symbol <strong>compared to the average symbol?</strong> </p>",
+  stimulus: "<p>How would you rate that symbol?</p>",
   choices: ['1', '2', '3','4'],
   trial_duration: 3000,
   response_ends_trial: false,
