@@ -16,13 +16,26 @@
 
     /* initialize jsPsych */
     var jsPsych = initJsPsych({
-      on_finish: function (){
-      var all_data = jsPsych.data.get().localSave('json','iFADamp2data.json');
-timeline.push(all_data); 
-  }
-});
-var all_data = jsPsych.data.get();
-console.log(all_data.csv());
+        on_finish: async function() {
+
+          if (window.location !== window.parent.location) {
+            // running on server so send data to the server
+            var measure = await TaskFlow.Client.Measure.get();
+            // get data out of jspsych
+            var task_data = JSON.stringify(jsPsych.data.get().values());
+            measure.complete = true;
+            measure.json = task_data;
+            // sync measure with server
+            await TaskFlow.Client.Measure.set(measure);
+            // continue on!
+            TaskFlow.Client.Measure.end();
+          } else {
+            // running local
+            // display the data
+            jsPsych.data.displayData();
+          }
+        }
+    });
 
     /* create timeline */
     var timeline = [];
