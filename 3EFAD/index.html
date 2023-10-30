@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
     <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="my_experiment_style_MRI.css">
-    <link rel="taskflow" href="taskflow.js">
+    <script src="./lib/taskflow/client.js"></script>
   </head>
   <body></body>
   <script>
@@ -63,7 +63,7 @@
         <p><strong>Unpleasant</strong>, press the button 2</p>
         <p><strong>Pleasant</strong>, press the button 3</p>
         <p><strong>Very pleasant</strong>, press the button 4.</p>
-       <p> <img src='img/key.png' alt='Key'></div></p>
+       <p> <img src='img/response_key.png' alt='Key'></div></p>
         <p>Press any button to continue.</p>
       `,
       post_trial_gap: 1000
@@ -153,8 +153,8 @@ var test = {
   type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('stimulus'),
   choices: "NO_KEYS",
- trial_duration: 2000,
- stimulus_height: 400,
+  trial_duration: 2000,
+  stimulus_height: 650,
   maintain_aspect_ration: true,
  };
 var response = {
