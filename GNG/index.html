@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome (GNG Scanner)</title>
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+      <script src="jsPsych-4.0/plugins/jspsych-single-stim.js"></script>
+    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="my_experiment_style_GNG.css">
+    <script src="./lib/taskflow/client.js"></script>
+  </head>
+  <body></body>
+  <script>
+/* TASK INFO: GNG based on jspsych tutorial */
+
+    /* initialize jsPsych */
+    var jsPsych = initJsPsych({
+        on_finish: async function() {
+
+          if (window.location !== window.parent.location) {
+            // running on server so send data to the server
+            var measure = await TaskFlow.Client.Measure.get();
+            // get data out of jspsych
+            var task_data = JSON.stringify(jsPsych.data.get().values());
+            measure.complete = true;
+            measure.json = task_data;
+            // sync measure with server
+            await TaskFlow.Client.Measure.set(measure);
+            // continue on!
+            TaskFlow.Client.Measure.end();
+          } else {
+            // running local
+            // display the data
+            jsPsych.data.displayData();
+          }
+        }
+    });
+
+
+ /* preload images */
+ var preload = {
+      type: jsPsychPreload,
+      images: ['img/blue.png', 'img/orange.png']
+    };
+    timeline.push(preload);
+
+    /* define welcome message trial */
+    var welcome = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "Welcome to another Task! </p> <p>Press any button for instructions. </p>"
+    };
+    timeline.push(welcome);
+
+    /* define instructions trial */
+    var instructions = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <p>In this experiment, a circle will appear in the center " +
+      "of the screen.</p><p>If the circle is <strong>blue</strong>, " +
+      "press the letter F on the keyboard as fast as you can.</p>" +
+      "<p>If the circle is <strong>orange</strong>, do not press " +
+      "any key.</p>" +
+      "<div class='left center-content'><img src='img/blue.png'></img>" +
+      "<p class='small'><strong>Press the F key</strong></p></div>" +
+      "<div class='right center-content'><img src='img/orange.png'></img>" +
+      "<p class='small'><strong>Do not press a key</strong></p></div>" +
+      "<p>Press any key to begin.</p>"
+      `,
+      post_trial_gap: 1000
+    };
+/*questions for the examiner*/
+var questions = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<p>If you have questions or concerns, please signal to the examiner. </p> <p>If not, press any button to continue. </p>"
+    };
+
+/*define trial awaiting for the scanner keyboard button #5 */
+var MRIstart ={
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<p> Please wait while the scanner starts up. This will take 10 seconds. </strong></p>",
+  choices: ['5'],
+ prompt: "<p> A color circle will appear when the task starts. </p>",
+ data: {
+    task: 'response'},
+    on_finish: function(data){
+    data.response;
+ }
+};
+
+    /* define test block */
+    var test_stimuli = [
+        {
+            image: "img/blue.png",
+            data: {response: 'go'}
+        },
+        {
+            image: "img/orange.png",
+            data: {response: 'no-go'}
+        }
+    ];
+       
+    var all_trials = jsPsych.randomization.repeat(test_stimuli, 10, true)
+
+    var test_block = {
+      type: "single-stim",
+      stimuli: all_trials.image,
+      choices: ['F'],
+      data: all_trials.data,
+      timing_response: 1500,
+    };
+    timeline.push(test_block);
+
+     var experiment = [];
+    experiment.push(preload);
+    experiment.push(welcome);
+    experiment.push(instructions);
+    experiment.push(questions);
+    experiment.push(MRIstart);
+    experiment.push(test_block);
+
+    /* start the experiment */
+jsPsych.init({
+      experiment_structure: experiment,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+  
+
+  </script>
+</html>
