@@ -14,43 +14,17 @@
   <script>
 /* TASK INFO: GNG based on jspsych tutorial */
 
-    /* initialize jsPsych */
-    var jsPsych = initJsPsych({
-        on_finish: async function() {
-
-          if (window.location !== window.parent.location) {
-            // running on server so send data to the server
-            var measure = await TaskFlow.Client.Measure.get();
-            // get data out of jspsych
-            var task_data = JSON.stringify(jsPsych.data.get().values());
-            measure.complete = true;
-            measure.json = task_data;
-            // sync measure with server
-            await TaskFlow.Client.Measure.set(measure);
-            // continue on!
-            TaskFlow.Client.Measure.end();
-          } else {
-            // running local
-            // display the data
-            jsPsych.data.displayData();
-          }
-        }
-    });
-
-
  /* preload images */
  var preload = {
       type: jsPsychPreload,
       images: ['img/blue.png', 'img/orange.png']
     };
-    timeline.push(preload);
 
     /* define welcome message trial */
     var welcome = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: "Welcome to another Task! </p> <p>Press any button for instructions. </p>"
     };
-    timeline.push(welcome);
 
     /* define instructions trial */
     var instructions = {
@@ -87,7 +61,6 @@ var MRIstart ={
     data.response;
  }
 };
-
     /* define test block */
     var test_stimuli = [
         {
@@ -99,7 +72,7 @@ var MRIstart ={
             data: {response: 'no-go'}
         }
     ];
-       
+     
     var all_trials = jsPsych.randomization.repeat(test_stimuli, 10, true)
 
     var test_block = {
