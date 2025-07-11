@@ -9,7 +9,7 @@ body {
   max-width: 65%; 
 }
 img {  
-  width: 75%;
+  width: 25%;
   height: auto;
   object-fit: contain;
 }
