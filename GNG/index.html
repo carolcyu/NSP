@@ -49,13 +49,20 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <p>If the circle is <strong>blue</strong>, <u>press the letter F key</u> as fast as you can.<div class='left center-content'><img src='img/blue.png'></p> 
-          </img><p class='small'><p style="color: dodgerblue;"><strong>Press the F key</p></strong></p><p>If the circle is <strong>orange</strong>, <u>do not press any key</u>.</p></div><div class='right center-content'><img src='img/orange.png'></img><p class='small'><p style="color: coral;"><strong>Do not press a key</strong></p></div>
+          </img><p class='small'><p style="color: dodgerblue;"><strong>Press the F key</p></strong></p>
+      `,
+    };
+     timeline.push(instructions1);
+
+      var instructions2 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <p>If the circle is <strong>orange</strong>, <u>do not press any key</u>.</p></div><div class='right center-content'><img src='img/orange.png'></img><p class='small'><p style="color: coral;"><strong>Do not press a key</strong></p></div>
         <br><br><p><i>When you are ready, press any key to begin.</i></p>
       `,
       post_trial_gap: 1000
     };
-     timeline.push(instructions1);
-
+     timeline.push(instructions2);
 
 /*questions for the examiner*/
 var questions = {
