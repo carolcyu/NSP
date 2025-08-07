@@ -14,16 +14,11 @@
 /* TASK INFO: implicit FAD task 4 blocks, 1 per condition, no practice trials; alternative order to implicitFAD-ampsuic.html */
 
     /* initialize jsPsych */
-    var jsPsych = initJsPsych({
+     var jsPsych = initJsPsych({
         on_finish: function() {
-
-                     // running local
-            // display the data
-            jsPsych.data.displayData();
-          }
-        }
-    });
-
+        jsPsych.data.displayData();
+      }
+    }); 
     /* create timeline */
     var timeline = [];
 
