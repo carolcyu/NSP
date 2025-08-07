@@ -31,32 +31,31 @@
     /* define instructions trial */
     var instructions = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: `
+      stimulus: '
         <p>In this task, an image will appear on the screen followed by a symbol.</p><p>Using the response pad, please rate <strong>HOW PLEASANT a SYMBOL is</strong>, as quickly as you can. </p>
-        <p>Try to focus on rating the symbol.</p>
-        <p>Press any button to continue.</p>
-      `,
-      post_trial_gap: 1000
+        <p>Try to focus on rating the symbol.</p>',
+      choices: ['NEXT'],
+      post_trial_gap: 1000,
     };
     timeline.push(instructions);
     var instructions2 = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: `
+      stimulus: '
        <p>If the symbol is...</p> <p><strong>Very unpleasant</strong>, press the button 1</p>
         <p><strong>Unpleasant</strong>, press the button 2</p>
         <p><strong>Pleasant</strong>, press the button 3</p>
         <p><strong>Very pleasant</strong>, press the button 4.</p>
        <p> <img src='img/response_key.png' alt='Key'></div>
-        </p>
-        <p>Press any button to continue.</p>
-      `,
-      post_trial_gap: 1000
+       </p>',
+      choices: ['NEXT'],
+      post_trial_gap: 1000,
     };
     timeline.push(instructions2);
 /*questions for the examiner*/
 var questions = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: "<p>If you have questions or concerns, please signal to the examiner. </p> <p>If not, press any button to continue. </p>"
+      stimulus: "<p>If you have questions or concerns, please signal to the examiner. </p> <p>If not, press next to continue. </p>",
+      choices: ['NEXT'],
     };
     timeline.push(questions);
 
