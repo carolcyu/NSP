@@ -4,3 +4,4 @@
 # Explicit FAD Task: in scanner version assesses how pleasant, SDVPS and IAPS-based block design task, 2 orders randomized across participants
 # Explicit FAD Task: out of scanner version assessed valence, arousal, fear and disgust, SDVPS and IAPS-based block design task, 2 orders randomized across participants (same images as implicit)
 # GNG: for computer version
+# archive of task flow versions, new repositories made for qualtrics
